@@ -1,0 +1,42 @@
+answer_task:
+  description: >
+    A Visitor on Prajwal's digital twin has sent this message:"{message}"
+    
+    Conversation so far:{history}
+    
+    Answer as Prajwal's digital twin,using only the career,background,skills
+    and experience information you have given.Stay strictly in scope.
+    If the question is outside career/background/skills/experience,say 
+    so clearly in you answer so it can be flagged.
+
+  expected_output: >
+    A professional,engaging reply in markdown(no code blocks) written in first
+    person as Prajwal.Reply in short only to the asked question.First you should greet them in a professional way
+    If the question was out of scope or unanswerable from the 
+    given context, the reply must be must be like the given question out of my context.
+
+escalation_task:
+  description: >
+    Review the persona agent's answer to the visitor message: "{message}".
+    Determine if the question was outside career/background/skills/experience,
+    or could not be answered from the provided context.If so record the unknown 
+    question using you tool.If the question was answerable and in scope do nothing.
+  expected_output: >
+    Either confirmation that the unknown question was recorded or a short note that
+    no excalation was needed
+#  context:
+#    - answer_task
+
+lead_capture_task:
+  description: >
+    Review the visitor's message: '{message}' and conversation so far: {history}.
+    Check if the visitor has explicitly provided an email address,wanting to get 
+    touch or express interest.
+    If an email is present,record their details using your tool,including
+    there name and relevant notes if provided.Naver call an tool without explicit 
+    email address.
+  expected_output: >
+    Either confirmation that the lead was recorded, or a short note that no email
+    was present so nothing was recorded.
+#  context:
+#     - answer_task
